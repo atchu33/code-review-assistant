@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Theme Variables */
+:root {
+  /* Light Theme Colors */
+  --bg-primary-light: #FFFFFF;
+  --bg-secondary-light: #F8FAFC;
+  --bg-darker-light: #F1F5F9;
+  --card-light: #FFFFFF;
+  --text-primary-light: #0F172A;
+  --text-secondary-light: #475569;
+  --text-muted-light: #64748B;
+  --border-light: #E2E8F0;
+  --border-hover-light: #CBD5E1;
+  --primary-light: #7C3AED;
+  --primary-hover-light: #6D28D9;
+  --accent-light: #8B5CF6;
+  
+  /* Dark Theme Colors */
+  --bg-primary-dark: #020617;
+  --bg-secondary-dark: #0F172A;
+  --bg-darker-dark: #020617;
+  --card-dark: #1E293B;
+  --text-primary-dark: #F8FAFC;
+  --text-secondary-dark: #CBD5E1;
+  --text-muted-dark: #94A3B8;
+  --border-dark: #334155;
+  --border-hover-dark: #475569;
+  --primary-dark: #7C3AED;
+  --primary-hover-dark: #8B5CF6;
+  --accent-dark: #8B5CF6;
+}
+
+/* Light Mode */
+html.light,
+html.light body {
+  --bg-primary: var(--bg-primary-light);
+  --bg-secondary: var(--bg-secondary-light);
+  --bg-darker: var(--bg-darker-light);
+  --card-bg: var(--card-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-muted: var(--text-muted-light);
+  --border-color: var(--border-light);
+  --border-hover: var(--border-hover-light);
+  --primary: var(--primary-light);
+  --primary-hover: var(--primary-hover-light);
+  --accent: var(--accent-light);
+  
+  background-color: var(--bg-darker-light);
+  color: var(--text-primary-light);
+}
+
+/* Dark Mode (default) */
+html.dark,
+html.dark body,
+html:not(.light) body {
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --bg-darker: var(--bg-darker-dark);
+  --card-bg: var(--card-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-muted: var(--text-muted-dark);
+  --border-color: var(--border-dark);
+  --border-hover: var(--border-hover-dark);
+  --primary: var(--primary-dark);
+  --primary-hover: var(--primary-hover-dark);
+  --accent: var(--accent-dark);
+  
+  background-color: #020617;
+  color: #F8FAFC;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure sticky headers stay on top */
+header.sticky,
+header[class*="sticky"] {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  background-color: var(--card-bg) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  isolation: isolate;
+}
+
+/* Ensure header content has solid background */
+header > div {
+  background-color: var(--card-bg);
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure charts and SVG elements don't overlap header */
+svg {
+  position: relative;
+  z-index: 0;
+}
+
+/* Ensure all main content stays below header */
+main {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+main > * {
+  position: relative;
+  z-index: 0;
+}
+
+/* Fix select dropdowns for dark/light mode */
+select {
+  color-scheme: dark light;
+}
+
+html.dark select {
+  color-scheme: dark;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+html.light select {
+  color-scheme: light;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Style select options for dark mode */
+html.dark select option {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+html.light select option {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Hover states for select options */
+html.dark select option:hover,
+html.dark select option:checked {
+  background-color: var(--primary);
+  color: white;
+}
+
+html.light select option:hover,
+html.light select option:checked {
+  background-color: var(--primary);
+  color: white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom scrollbar - Dark */
+html.dark ::-webkit-scrollbar,
+html:not(.light) ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.dark ::-webkit-scrollbar-track,
+html:not(.light) ::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+html.dark ::-webkit-scrollbar-thumb,
+html:not(.light) ::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover,
+html:not(.light) ::-webkit-scrollbar-thumb:hover {
+  background: #64748B;
+}
+
+/* Custom scrollbar - Light */
+html.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
